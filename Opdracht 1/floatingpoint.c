@@ -107,6 +107,10 @@ void invalidOperations()
 	printf("(NAN) float max * 2 / float max * 2 bit pattern = %.10X\n", (int)f);
 
 	//UNDERFLOWS
+	f = FLT_MIN / (9999999999);
+	printf("(Underflow) = %.10e\n", f);
+	printf("(Underflow) bit pattern = %.10X\n", (int)f);
+
 
 
 	//double
