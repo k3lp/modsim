@@ -18,8 +18,8 @@ $(PROGNAME): $(OFILES)
 clean:
 	$(RM) *.o $(PROGNAME) $(PROGNAME)-$(VERSION).tbz
 
-run:
-  ./$(PROGNAME)
+run: ${PROGNAME}
+	./${PROGNAME}
 
 tarball: $(PROGNAME)
 	$(MAKE) clean
