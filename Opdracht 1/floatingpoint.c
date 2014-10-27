@@ -25,9 +25,12 @@ void floatRepresentation()
   }
   
   float tomin = 1;
-  float prevtomin;
+  float prevtomin = 0;
   
-  prevtomin = FLT_MIN/20;
+  for(int i = 0; i < 10; i++) { 	
+  	prevtomin = prevtomin-FLT_MIN;
+	printf("%.10e\n", prevtomin);
+  }
   
   /*while(!isinf(tomin)) {
     prevtomin = tomin;
