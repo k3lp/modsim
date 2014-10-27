@@ -1,4 +1,6 @@
-modsim
+Modelleren en Simuleren
+
 ======
 
-diederik hahahah
+Hidde Hensel (#6379176)
+Diederik Beker (#10190848)
