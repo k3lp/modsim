@@ -104,6 +104,29 @@ addReverseDouble(int from, int to)
     return sum;
 }
 
+
+double
+kahan(int from, int to)
+{
+	double sum = 0.0;
+	double c = 0.0;
+	double y = 0.0;
+	double t = 0.0;
+
+	for(int i = from; i < to; i++)
+	{
+		y = (1.0 / (double)i) - c;
+		t = sum + y;
+		c = (t - sum) - y;
+		sum = t;
+	}
+
+
+	return sum;
+}
+
+
+
 int
 main(int argc, char* argv[])
 {
@@ -112,6 +135,7 @@ main(int argc, char* argv[])
     int i;
     int j;
     double sum[6];
+	double kahansum; 
     if (argc > 1)
     {
         from = atoi(argv[1]);
@@ -136,6 +160,10 @@ main(int argc, char* argv[])
            sum[4] =addReverseDouble(from, to));
     printf("Recursive summation with doubles: %g\n",
            sum[5] =addRecursiveDouble(from, to));
+
+    printf("Kahan with doubles: %g\n",
+           kahansum = kahan(from, to));
+
     printf("Differences between results in a matrix:\n");
     for (i = 0; i< 6; i++)
     {
