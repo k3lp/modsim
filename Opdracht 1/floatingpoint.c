@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <float.h>
+#include <math.h>
 
 void floatRepresentation()
 {
@@ -15,8 +16,27 @@ void floatRepresentation()
   printf("The machine's precision of float = %.10e\n", FLT_EPSILON);
 
 	//range of valid numbers
+  float tomax = 1;
+  float prevtomax;
+  
+  while(!isinf(tomax)) {
+    prevtomax = tomax;
+    tomax *= 1.00001;
+  }
+  
+  float tomin = 1;
+  float prevtomin;
+  
+  prevtomin = FLT_MIN/20;
+  
+  /*while(!isinf(tomin)) {
+    prevtomin = tomin;
+    tomin /= 1.1;
+  }    */
   printf("The machine's maximum value of float = %.10e\n", FLT_MAX);
   printf("The machine's minimum value of float = %.10e\n", FLT_MIN);
+  printf("The machine's calculated maximum value of float = %.10e\n", prevtomax); 
+  printf("The machine's calculated maximum value of float = %.10e\n", prevtomin);
 } 
 
 void doubleRepresentation()
