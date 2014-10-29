@@ -13,7 +13,7 @@ void floatRepresentation()
 	printf("The machine's float size in bytes = %lu\n",sizeof(f));
 	
 	//machine precision  
-    float epsilon = 1.0;
+    	float epsilon = 1.0;
 	float prevepsilon = 0.0;
 
 	while((float)(1.0+(epsilon/2)) != 1.0)
@@ -94,6 +94,8 @@ void longRepresentation()
 
 void invalidOperations()
 {
+	printf("\nInvalid Operations:\n");
+
 	//float
 
 	//INF
@@ -121,12 +123,11 @@ void invalidOperations()
 
 int main(int argc, char* argv[])
 {
+
 	floatRepresentation();
 	doubleRepresentation();
 	longRepresentation();
 	invalidOperations();
-
-
 
 	return 0;
 }
