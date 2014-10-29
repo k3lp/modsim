@@ -16,29 +16,32 @@ double function(double x)
 //pak dat snijpunt van x as en stop in formule
 //vervang dat punt met of links of rechts en bereken de overgebleven
 //doe dit n keer
-double regulaFalsi(double x, double stapgrootte, double n)
+double regulaFalsi(double (*functionPointer)(double y), double x, double stapgrootte, double n)
 {
 	double result;
-	double links = x - stapgrootte;
-	double rechts = x + stapgrootte;
+	double links = x - stapgrootte; //a
+	//printf("l = %.10e\n", links);
+	double rechts = x + stapgrootte; //b
+	//printf("r = %.10e\n", rechts);
 	double snijpunt = x;
-	double functionLinks = function(links);
-	double functionRechts = function(rechts);
-	double functionX = function(x);
+	double functionLinks;
+	double functionRechts;
+	double functionX = functionPointer(snijpunt);;
 
 
 
 	//pak snijpunt met x-as tussen left en right
 	for(int i = 0; i < n; i++)
 	{
-		functionLinks = function(links);
+		functionLinks = functionPointer(links);
 
-		functionRechts = function(rechts);
+		functionRechts = functionPointer(rechts);
+		//printf("fl = %.10e\n", functionLinks);
+		//printf("fr = %.10e\n", functionRechts);
+		snijpunt = links - ((links - rechts)/(functionLinks-functionRechts)) * functionLinks;
 
 
-		snijpunt = links - ((links - rechts)/(functionLinks-functionRechts));
-		snijpunt *= functionLinks;
-
+		functionX = functionPointer(snijpunt);
 		if((functionLinks * functionX) > 0)
 		{
 			links = snijpunt;
@@ -47,6 +50,7 @@ double regulaFalsi(double x, double stapgrootte, double n)
 		{
 			rechts = snijpunt;
 		}
+
 		printf("snijpunt = %.10e\n", snijpunt);
 		
 	}
@@ -66,10 +70,12 @@ double newtonRaphson()
 
 int main(int argc, char* argv[])
 {
-	double stapgrootte = 5;
-	double n = 5;
+	double stapgrootte =1;
+	double n = 10;
 	double x = sqrt(2);
-	double result = regulaFalsi(x, stapgrootte, n);
+	double (*functionPointer)(double);
+	functionPointer = &function;
+	double result = regulaFalsi(*functionPointer, x, stapgrootte, n);
 
 	return 0;
 }
