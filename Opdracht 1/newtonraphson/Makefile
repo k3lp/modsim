@@ -1,4 +1,4 @@
-PROGNAME=differentiation
+PROGNAME=newton_raphson
 VERSION=1.0
 
 MKDIR=mkdir
