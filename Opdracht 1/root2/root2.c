@@ -16,28 +16,21 @@ double function(double x)
 //pak dat snijpunt van x as en stop in formule
 //vervang dat punt met of links of rechts en bereken de overgebleven
 //doe dit n keer
-double regulaFalsi(double (*functionPointer)(double y), double x, double stapgrootte, double n)
+double regulaFalsi(double (*functionPointer)(double y), double linksGet, double rechtsGet, double stapgrootte, double n, double errorGet)
 {
-	double result;
-	double links = x - stapgrootte; //a
-	//printf("l = %.10e\n", links);
-	double rechts = x + stapgrootte; //b
-	//printf("r = %.10e\n", rechts);
-	double snijpunt = x;
-	double functionLinks;
-	double functionRechts;
-	double functionX = functionPointer(snijpunt);;
-
-
-
+	double result, functionLinks, functionRechts;
+	double links = linksGet;
+	double rechts = rechtsGet;
+	double snijpunt = 0.0;
+	double snijpuntprev = 0.0;
+	double functionX = 0.0;
+	double error = errorGet;
+	double breakcheck;
 	//pak snijpunt met x-as tussen left en right
 	for(int i = 0; i < n; i++)
 	{
 		functionLinks = functionPointer(links);
-
 		functionRechts = functionPointer(rechts);
-		//printf("fl = %.10e\n", functionLinks);
-		//printf("fr = %.10e\n", functionRechts);
 		snijpunt = links - ((links - rechts)/(functionLinks-functionRechts)) * functionLinks;
 
 
@@ -50,12 +43,15 @@ double regulaFalsi(double (*functionPointer)(double y), double x, double stapgro
 		{
 			rechts = snijpunt;
 		}
-
+		breakcheck = snijpunt - snijpuntprev;
+		if(breakcheck >= -error && breakcheck <= error)
+		{
+			break;
+		}
 		printf("snijpunt = %.10e\n", snijpunt);
-		
+		snijpuntprev = snijpunt;
 	}
 	result = snijpunt;
-
 	return result;
 }
 
@@ -71,11 +67,13 @@ double newtonRaphson()
 int main(int argc, char* argv[])
 {
 	double stapgrootte =1;
-	double n = 10;
-	double x = sqrt(2);
+	double n = 50;
+	double startRechts = 5;
+	double startLinks = -2;
+	double error = 0.000001;
 	double (*functionPointer)(double);
 	functionPointer = &function;
-	double result = regulaFalsi(*functionPointer, x, stapgrootte, n);
+	double result = regulaFalsi(*functionPointer, startLinks, startRechts, stapgrootte, n, error);
 
 	return 0;
 }
