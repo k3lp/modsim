@@ -125,7 +125,7 @@ double newtonRaphson(double (*functionPointer)(double y), double (*functionPoint
 
 	}
 	result = x1;		
-	printf("result = %.10e\n", result);
+	printf("root = %.10e\n", result);
 
 
 
@@ -136,11 +136,9 @@ double newtonRaphson(double (*functionPointer)(double y), double (*functionPoint
 	{
 		for(int j = 0; j < n; j++)
 		{
-			//x1 = x0 - ( (f(x0) / f'(x0) )
-
-		//formule van https://www.youtube.com/watch?v=aMwpQfV0Vds
-		//modified newton raphson is x0 - 
-		//( (f(x0) * f'(x0)) / f'(x0)^2 - f(x0) * f''(x0))
+			//formule van https://www.youtube.com/watch?v=aMwpQfV0Vds
+			//modified newton raphson is x0 - 
+			//( (f(x0) * f'(x0)) / f'(x0)^2 - f(x0) * f''(x0))
 			temp = ((functionPointer(x0) * functionPointerDerivative(x0)) / 
 				( (functionPointerDerivative(x0)*functionPointerDerivative(x0))
 				- (functionPointer(x0) *  function4Derivative2(x0))));
@@ -149,13 +147,13 @@ double newtonRaphson(double (*functionPointer)(double y), double (*functionPoint
 			breakcheck = x1 - x0;
 			if(breakcheck >= -error && breakcheck <= error)
 			{
-				printf("stap2 = %d\n", j);
+				printf("stap 2 = %d\n", j);
 				break;
 			}
 			x0 = x1;
 		}
 		result = x1;		
-		printf("result = %.10e\n", result);
+		printf("root 2 = %.10e\n", result);
 	}
 
 
@@ -188,11 +186,7 @@ int main(int argc, char* argv[])
 	
 	functionPointer = &function4;
 	functionPointerDerivative = &function4Derivative;
-	
-	//result = regulaFalsi(*functionPointer, startLinks, startRechts, n, error);
-	//printf("klaar met regulaFalsi\n");
 	startLinks = 10;
-	error = 0.00001;
 	result = newtonRaphson(*functionPointer, *functionPointerDerivative, startLinks, n, error,1);
 	printf("klaar met newton\n");
 	return 0;
