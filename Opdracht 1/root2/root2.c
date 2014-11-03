@@ -62,6 +62,7 @@ double regulaFalsi(double (*functionPointer)(double y), double linksGet, double 
 		breakcheck = snijpunt - snijpuntprev;
 		if(breakcheck >= -error && breakcheck <= error)
 		{
+			printf("stap = %d\n", i);
 			break;
 		}
 		//printf("snijpunt = %.10e\n", snijpunt);
@@ -79,8 +80,10 @@ double regulaFalsi(double (*functionPointer)(double y), double linksGet, double 
 double newtonRaphson(double (*functionPointer)(double y), double (*functionPointerDerivative)(double y2), double linksGet, double n, double errorGet)
 {
 	double result = 0.0;
-	double x0 = linksGet, x1 = 0.0;
+	double x0 = abs(linksGet), x1 = 0.0;
 	double temp;
+	double error = errorGet;
+	double breakcheck;
 
 
 	for(int i = 0; i < n; i++)
@@ -88,7 +91,17 @@ double newtonRaphson(double (*functionPointer)(double y), double (*functionPoint
 		//x1 = x0 - ( (f(x0) / f'(x0) )
 		temp = functionPointer(x0) / functionPointerDerivative(x0);
 		x1 = x0 - temp;
+
+		breakcheck = x1 - x0;
+		if(breakcheck >= -error && breakcheck <= error)
+		{
+			printf("stap = %d\n", i);
+			break;
+		}
+
 		x0 = x1;
+
+
 	}
 	result = x1;		
 	printf("wortel2 = %.10e\n", result);
@@ -100,10 +113,10 @@ double newtonRaphson(double (*functionPointer)(double y), double (*functionPoint
 
 int main(int argc, char* argv[])
 {
-	double n = 100;
-	double startRechts = 5;
-	double startLinks = 1;
-	double error = 0.000001;
+	double n = 1000;
+	double startRechts = 20;
+	double startLinks = -10;
+	double error = 0.00001;
 	double (*functionPointer)(double);
 	functionPointer = &function;
 	double (*functionPointerDerivative)(double);
