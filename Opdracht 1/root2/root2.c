@@ -23,8 +23,15 @@ double functionDerivative(double x)
 	return result;
 }
 
+double function4(double x)
+{
+	return (pow(x,3) + (3 * pow(x,2)) -4);
+}
 
-
+double function4Derivative(double x)
+{
+	return (2 * (x*x) + 6*x);
+}
 
 //formule van http://nl.wikipedia.org/wiki/Regula_falsi
 //pak 2 punten links en rechts van te berekenen punt
@@ -124,6 +131,18 @@ int main(int argc, char* argv[])
 
 
 	double result = regulaFalsi(*functionPointer, startLinks, startRechts, n, error);
+	printf("klaar met regulaFalsi\n");
+
+	result = newtonRaphson(*functionPointer, *functionPointerDerivative, startLinks, n, error);
+	printf("klaar met newton\n");
+	
+	
+	
+	
+	functionPointer = &function4;
+	functionPointerDerivative = &function4Derivative;
+	
+	result = regulaFalsi(*functionPointer, startLinks, startRechts, n, error);
 	printf("klaar met regulaFalsi\n");
 
 	result = newtonRaphson(*functionPointer, *functionPointerDerivative, startLinks, n, error);
