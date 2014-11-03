@@ -1,6 +1,9 @@
+//http://en.wikipedia.org/wiki/Kahan_summation_algorithm
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <math.h>
 /*
  * This test program computes the sum of the series 1/i, with i an 
  * integer running from a value "from" to a value "to" (inclusive).
@@ -131,11 +134,11 @@ int
 main(int argc, char* argv[])
 {
     int from = 1;
-    int to = 1000;
+    int to = pow(210,8);
     int i;
     int j;
-    double sum[6];
-	double kahansum; 
+    double sum[7];
+    
     if (argc > 1)
     {
         from = atoi(argv[1]);
@@ -160,14 +163,13 @@ main(int argc, char* argv[])
            sum[4] =addReverseDouble(from, to));
     printf("Recursive summation with doubles: %g\n",
            sum[5] =addRecursiveDouble(from, to));
-
     printf("Kahan with doubles: %g\n",
-           kahansum = kahan(from, to));
+           sum[6] = kahan(from, to));
 
     printf("Differences between results in a matrix:\n");
-    for (i = 0; i< 6; i++)
+    for (i = 0; i< 7; i++)
     {
-        for (j = 0; j< 6; j++)
+        for (j = 0; j< 7; j++)
         {
             printf("%12.5g\t", sum[i] - sum[j]);
         }
