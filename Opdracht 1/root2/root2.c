@@ -138,7 +138,7 @@ double newtonRaphson(double (*functionPointer)(double y), double (*functionPoint
 		{
 			//x1 = x0 - ( (f(x0) / f'(x0) )
 
-
+		//formule van https://www.youtube.com/watch?v=aMwpQfV0Vds
 		//modified newton raphson is x0 - 
 		//( (f(x0) * f'(x0)) / f'(x0)^2 - f(x0) * f''(x0))
 			temp = ((functionPointer(x0) * functionPointerDerivative(x0)) / ( (functionPointerDerivative(x0)*functionPointerDerivative(x0))
