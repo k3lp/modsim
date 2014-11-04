@@ -107,7 +107,7 @@ addReverseDouble(int from, int to)
     return sum;
 }
 
-
+//http://en.wikipedia.org/wiki/Kahan_summation_algorithm
 double
 kahan(int from, int to)
 {
