@@ -48,51 +48,77 @@ int main(int argc, char* argv[])
 	//parameter value x
 	double x = 0.0;
 
+  double h = 1.0;
+
 	//increment h
-	double h = 0.001;
-	// When setting h to 1 central still works, right hand does not.
-	// h = 0.0001 is too small for 10^12 pi.
-	// h must be between 0.1 and 0.001.
-
-
-	double result = 0.0;
-	//function to be differntiated
-	//double (*functionPointer)(double);
-	//functionPointer = &function;
-	
-	//Declare function pointer
-	double (*functionPointer)(double);
-	functionPointer = &function;
-	
-	//double result = rightHand(x, h);
-	//printf("righthand = %.10e\n", result);
-
-  printf("\nx = pi/3\n");
-  //met pi/3
-	x = pi / 3;
-	result = central(*functionPointer, x, h);
-	printf("%-15s%-5s%-10.10e\n", "Central", "=" , result);
-
-	result = rightHand(*functionPointer, x, h);
-	printf("%-15s%-5s%-10.10e\n", "Right Hand", "=" , result);
-
-  printf("\nx = pi/3 + 100pi\n");
-	//met pi/3 + 100pi
-	x = (pi / 3) + (100 * pi);
-	result = central(*functionPointer, x, h);
-	printf("%-15s%-5s%-10.10e\n", "Central", "=" , result);
-
-	result = rightHand(*functionPointer, x, h);
-	printf("%-15s%-5s%-10.10e\n", "Right Hand", "=" , result);
-
-  printf("\nx = pi/3 + (10^12)pi\n");
-  //met pi/3 + (10^12)pi
-	x = (pi / 3) + (pow(10,12) * pi);
-	result = central(*functionPointer, x, h);
-	printf("%-15s%-5s%-10.10e\n", "Central", "=" , result);
-
-	result = rightHand(*functionPointer, x, h);
-	printf("%-15s%-5s%-10.10e\n", "Right Hand", "=" , result);
-	
+	for(h; h >= 0.00001;)
+  { 
+  	// When setting h to 1 central still works, right hand does not.
+  	// h = 0.0001 is too small for 10^12 pi.
+  	// h must be between 0.1 and 0.001.
+    printf("%f", h);
+    
+  	double result = 0.0;
+    double error = 0.0;
+  	//function to be differntiated
+  	//double (*functionPointer)(double);
+  	//functionPointer = &function;
+  	
+  	//Declare function pointer
+  	double (*functionPointer)(double);
+  	functionPointer = &function;
+  	
+  	//double result = rightHand(x, h);
+  	//printf("righthand = %.10e\n", result);
+  
+    printf("\nx = pi/3\n");
+    //met pi/3
+  	x = pi / 3;
+  	result = central(*functionPointer, x, h);
+  	printf("%-15s%-5s%-10.10e\n", "Central", "=" , result);
+    
+    error = 0.5 - result;
+    printf("%-15s%-5s%-10.10e\n", "Error", "=" , error);
+    
+  	result = rightHand(*functionPointer, x, h);
+  	printf("%-15s%-5s%-10.10e\n", "Right Hand", "=" , result);
+    
+    error = 0.5 - result;
+    printf("%-15s%-5s%-10.10e\n", "Error", "=" , error);
+  
+    printf("\nx = pi/3 + 100pi\n");
+  	//met pi/3 + 100pi
+  	x = (pi / 3) + (100 * pi);
+  	result = central(*functionPointer, x, h);
+  	printf("%-15s%-5s%-10.10e\n", "Central", "=" , result);
+    
+    error = 0.5 - result;
+    printf("%-15s%-5s%-10.10e\n", "Error", "=" , error);
+    
+  	result = rightHand(*functionPointer, x, h);
+  	printf("%-15s%-5s%-10.10e\n", "Right Hand", "=" , result);
+    
+    error = 0.5 - result;
+    printf("%-15s%-5s%-10.10e\n", "Error", "=" , error);
+    
+    printf("\nx = pi/3 + (10^12)pi\n");
+    //met pi/3 + (10^12)pi
+  	x = (pi / 3) + (pow(10,12) * pi);
+  	result = central(*functionPointer, x, h);
+  	printf("%-15s%-5s%-10.10e\n", "Central", "=" , result);
+    
+    error = 0.5 - result;
+    printf("%-15s%-5s%-10.10e\n", "Error", "=" , error);
+    
+  	result = rightHand(*functionPointer, x, h);
+  	printf("%-15s%-5s%-10.10e\n", "Right Hand", "=" , result);
+  	
+    error = 0.5 - result;
+    printf("%-15s%-5s%-10.10e\n", "Error", "=" , error);
+    
+    printf("--------------------------------\n");
+    
+    h = h/10;
+  }  
 	return 0;
 }
