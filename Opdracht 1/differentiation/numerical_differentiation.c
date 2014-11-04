@@ -1,5 +1,8 @@
-//http://en.wikipedia.org/wiki/Finite_difference
-//http://mathfaculty.fullerton.edu/mathews/n2003/differentiation/numericaldiffproof.pdf
+/*
+ * Hidde Hensel en Diederik Beker
+ * http://en.wikipedia.org/wiki/Finite_difference
+ * http://mathfaculty.fullerton.edu/mathews/n2003/differentiation/numericaldiffproof.pdf
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,9 +34,6 @@ double central(double (*functionPointer)(double y), double x, double h)
 
 	//deriv in x wil je weten
 	//dx = h
-
-	//(f(x + 0.5h) - f(x-0.5h))/2h
-	//double sinResult = function(x);
 	result = ((functionPointer(x + h) - functionPointer(x - h)) / (2*h));
 
 
@@ -50,9 +50,9 @@ int main(int argc, char* argv[])
 
 	//increment h
 	double h = 0.001;
-  	// When setting h to 1 central still works, right hand does not.
-  	// h = 0.0001 is too small for 10^12 pi.
-  	// h must be between 0.1 and 0.001.
+	// When setting h to 1 central still works, right hand does not.
+	// h = 0.0001 is too small for 10^12 pi.
+	// h must be between 0.1 and 0.001.
 
 
 	double result = 0.0;
@@ -67,29 +67,32 @@ int main(int argc, char* argv[])
 	//double result = rightHand(x, h);
 	//printf("righthand = %.10e\n", result);
 
-	//met pi/3
+  printf("\nx = pi/3\n");
+  //met pi/3
 	x = pi / 3;
 	result = central(*functionPointer, x, h);
-	printf("central = %.10e\n", result);
+	printf("%-15s%-5s%-10.10e\n", "Central", "=" , result);
 
 	result = rightHand(*functionPointer, x, h);
-	printf("righthand = %.10e\n", result);
+	printf("%-15s%-5s%-10.10e\n", "Right Hand", "=" , result);
 
-	//met pi/3 + 100 pi
+  printf("\nx = pi/3 + 100pi\n");
+	//met pi/3 + 100pi
 	x = (pi / 3) + (100 * pi);
 	result = central(*functionPointer, x, h);
-	printf("central = %.10e\n", result);
+	printf("%-15s%-5s%-10.10e\n", "Central", "=" , result);
 
 	result = rightHand(*functionPointer, x, h);
-	printf("righthand = %.10e\n", result);
+	printf("%-15s%-5s%-10.10e\n", "Right Hand", "=" , result);
 
-  //met pi/3 + 10^12pi
+  printf("\nx = pi/3 + (10^12)pi\n");
+  //met pi/3 + (10^12)pi
 	x = (pi / 3) + (pow(10,12) * pi);
 	result = central(*functionPointer, x, h);
-	printf("central = %.10e\n", result);
+	printf("%-15s%-5s%-10.10e\n", "Central", "=" , result);
 
 	result = rightHand(*functionPointer, x, h);
-	printf("righthand = %.10e\n", result);
+	printf("%-15s%-5s%-10.10e\n", "Right Hand", "=" , result);
 	
 	return 0;
 }
