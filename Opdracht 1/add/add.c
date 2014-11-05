@@ -128,16 +128,35 @@ kahan(int from, int to)
 	return sum;
 }
 
+//http://en.wikipedia.org/wiki/Kahan_summation_algorithm
+float
+kahanfloat(int from, int to)
+{
+	float sum = 0.0;
+	float c = 0.0;
+	float y = 0.0;
+	float t = 0.0;
 
+	for(int i = from; i < to; i++)
+	{
+		y = (1.0 / (float)i) - c;
+		t = sum + y;
+		c = (t - sum) - y;
+		sum = t;
+	}
+
+
+	return sum;
+}
 
 int
 main(int argc, char* argv[])
 {
     int from = 1;
-    int to = pow(210,8);
+    int to = 1000;
     int i;
     int j;
-    double sum[7];
+    double sum[8];
     
     if (argc > 1)
     {
@@ -165,11 +184,13 @@ main(int argc, char* argv[])
            sum[5] =addRecursiveDouble(from, to));
     printf("Kahan with doubles: %g\n",
            sum[6] = kahan(from, to));
-
+    printf("Kahan with floats: %g\n",
+           sum[7] = kahanfloat(from, to));
+           
     printf("Differences between results in a matrix:\n");
-    for (i = 0; i< 7; i++)
+    for (i = 0; i< 8; i++)
     {
-        for (j = 0; j< 7; j++)
+        for (j = 0; j< 8; j++)
         {
             printf("%12.5g\t", sum[i] - sum[j]);
         }
