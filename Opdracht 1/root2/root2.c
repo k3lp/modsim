@@ -182,7 +182,7 @@ int main(int argc, char* argv[])
 	printf("klaar met newton\n");
 	
 	
-	
+	//(x-1)(x+2)^2
 	
 	functionPointer = &function4;
 	functionPointerDerivative = &function4Derivative;
