@@ -84,11 +84,12 @@ void regulaFalsi(double (*functionPointer)(double y), double linksGet, double re
 		breakcheck = snijpunt - snijpuntprev;
 		if(breakcheck >= -error && breakcheck <= error)
 		{
-			printf("stap = %d\n", i);
+			printf("totaal stappen = %d\n", i);
 			break;
 		}
 		
 		snijpuntprev = snijpunt;
+		printf("stap = %d, snijpunt = %e\n", i, snijpunt);
 	}
 	result = snijpunt;
 	printf("root = %.10e\n", result);
@@ -112,11 +113,11 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 		//x1 = x0 - ( (f(x0) / f'(x0) )
 		temp = functionPointer(x0) / functionPointerDerivative(x0);
 		x1 = x0 - temp;
-
+		printf("stap = %d, function(x) = %e\n", i, x1);
 		breakcheck = x1 - x0;
 		if(breakcheck >= -error && breakcheck <= error)
 		{
-			printf("stap = %d\n", i);
+			printf("totaal stappen = %d\n", i);
 			break;
 		}
 
@@ -125,12 +126,13 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 
 	}
 	result = x1;		
-	printf("root = %.10e\n", result);
+	//printf("root = %.10e\n", result);
 
 	x0 = abs(linksGet);
 	//root 1 found, op zoek naar root nr 2
 	if(multiple_roots != 0)
 	{
+		printf("ROOT NR 2: \n");
 		for(int j = 0; j < n; j++)
 		{
 			//formule van https://www.youtube.com/watch?v=aMwpQfV0Vds
@@ -141,13 +143,15 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 				- (functionPointer(x0) *  functionPointerDerivative2(x0))));
 			x1 = x0 - temp;
 
+
 			breakcheck = x1 - x0;
 			if(breakcheck >= -error && breakcheck <= error)
 			{
-				printf("stap 2 = %d\n", j);
+				printf("totaal stappen = %d\n", j);
 				break;
 			}
 			x0 = x1;
+			printf("stap = %d, function(x) = %e\n", j, x1);
 		}
 		result = x1;		
 		printf("root 2 = %.10e\n", result);
@@ -163,7 +167,7 @@ int main(int argc, char* argv[])
 	double n = 1000;
 	double startRechts = 4;
 	double startLinks = -3;
-	double error = 0.0000001;
+	double error = 0.00001;
 
 	double (*functionPointer)(double);
 	functionPointer = &function;
@@ -174,16 +178,16 @@ int main(int argc, char* argv[])
 
 	//opdracht3
 	regulaFalsi(*functionPointer, startLinks, startRechts, n, error);
-	printf("klaar met regulaFalsi van function1 tussen %e en %e.\n",startLinks, startRechts);
+	printf("klaar met regulaFalsi van function1 tussen %e en %e.\n\n",startLinks, startRechts);
 
 	startLinks = 1;
 	newtonRaphson(*functionPointer, *functionPointerDerivative, *functionPointerDerivative2, startLinks, n, error,0);
-	printf("klaar met newton van function1 met startwaarde %e.\n",startLinks);
+	printf("klaar met newton van function1 met startwaarde %e.\n\n",startLinks);
 	
 	//opdracht4
 	functionPointer = &function4;
 	functionPointerDerivative = &function4Derivative;
-	startLinks = 4;
+	startLinks = 6;
 
 	newtonRaphson(*functionPointer, *functionPointerDerivative, *functionPointerDerivative2, startLinks, n, error,1);
 	printf("klaar met newton van function2 met startwaarde %e.\n",startLinks);
