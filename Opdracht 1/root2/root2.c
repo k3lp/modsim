@@ -87,7 +87,7 @@ void regulaFalsi(double (*functionPointer)(double y), double linksGet, double re
 			printf("stap = %d\n", i);
 			break;
 		}
-		//printf("snijpunt = %.10e\n", snijpunt);
+		
 		snijpuntprev = snijpunt;
 	}
 	result = snijpunt;
@@ -179,13 +179,14 @@ int main(int argc, char* argv[])
 	regulaFalsi(*functionPointer, startLinks, startRechts, n, error);
 	printf("klaar met regulaFalsi van function1 tussen %e en %e.\n",startLinks, startRechts);
 
+	startLinks = 1;
 	newtonRaphson(*functionPointer, *functionPointerDerivative, *functionPointerDerivative2, startLinks, n, error,0);
 	printf("klaar met newton van function1 met startwaarde %e.\n",startLinks);
 	
 	//opdracht4
 	functionPointer = &function4;
 	functionPointerDerivative = &function4Derivative;
-	startLinks = -5;
+	startLinks = 4;
 
 	newtonRaphson(*functionPointer, *functionPointerDerivative, *functionPointerDerivative2, startLinks, n, error,1);
 	printf("klaar met newton van function2 met startwaarde %e.\n",startLinks);
