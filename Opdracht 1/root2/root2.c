@@ -92,7 +92,6 @@ void regulaFalsi(double (*functionPointer)(double y), double linksGet, double re
 	}
 	result = snijpunt;
 	printf("root = %.10e\n", result);
-	return 0;
 }
 
 
@@ -154,8 +153,6 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 		printf("root 2 = %.10e\n", result);
 	}
 
-
-	return 0;
 }
 
 
