@@ -1,3 +1,10 @@
+/*
+ *  1.1
+ *  By: Hidde Hensel en Diederik Beker
+ *
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

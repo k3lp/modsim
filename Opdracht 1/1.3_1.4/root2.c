@@ -1,4 +1,10 @@
-#include <stdio.h>
+/*
+ *  1.3 + 1.4
+ *  By: Hidde Hensel en Diederik Beker
+ *
+ */
+
+ #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <math.h>
@@ -13,14 +19,11 @@ double function(double x)
 }
 
 
-
-
 double functionDerivative(double x)
 {
 	double result = 2*x;
 	return result;
 }
-
 
 
 //(x-1)(x+2)^2
@@ -31,21 +34,18 @@ double function4(double x)
 }
 
 
-
-
 double function4Derivative(double x)
 {
 	double result = 3 * (x*x) + 6*x;
 	return result;
 }
 
+
 double function4Derivative2(double x)
 {
 	double result = 6*x + 6;
 	return result;
 }
-
-
 
 
 //formule van http://nl.wikipedia.org/wiki/Regula_falsi
@@ -136,6 +136,7 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 		for(int j = 0; j < n; j++)
 		{
 			//formule van https://www.youtube.com/watch?v=aMwpQfV0Vds
+			//ookwel de Ralston-Rabinowitz methode
 			//modified newton raphson is x0 - 
 			//( (f(x0) * f'(x0)) / f'(x0)^2 - f(x0) * f''(x0))
 			temp = ((functionPointer(x0) * functionPointerDerivative(x0)) / 
@@ -168,6 +169,7 @@ int main(int argc, char* argv[])
 	double startRechts = 4;
 	double startLinks = -3;
 	double error = 0.00001;
+	double startOpdracht4 = 6;
 
 	double (*functionPointer)(double);
 	functionPointer = &function;
@@ -187,10 +189,9 @@ int main(int argc, char* argv[])
 	//opdracht4
 	functionPointer = &function4;
 	functionPointerDerivative = &function4Derivative;
-	startLinks = 6;
 
 	newtonRaphson(*functionPointer, *functionPointerDerivative, *functionPointerDerivative2, startLinks, n, error,1);
-	printf("klaar met newton van function2 met startwaarde %e.\n",startLinks);
+	printf("klaar met newton van function2 met startwaarde %e.\n", startOpdracht4);
 
 	return 0;
 }

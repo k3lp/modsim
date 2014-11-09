@@ -1,5 +1,6 @@
 /*
- * Hidde Hensel en Diederik Beker
+ * 1.2
+ * By: Hidde Hensel en Diederik Beker
  * http://en.wikipedia.org/wiki/Finite_difference
  * http://mathfaculty.fullerton.edu/mathews/n2003/differentiation/numericaldiffproof.pdf
  */
@@ -51,7 +52,7 @@ int main(int argc, char* argv[])
   double h = 1.0;
 
 	//increment h
-	for(h; h >= 0.00001;)
+	for(h; h >= 0.001;)
   { 
   	// When setting h to 1 central still works, right hand does not.
   	// h = 0.0001 is too small for 10^12 pi.
