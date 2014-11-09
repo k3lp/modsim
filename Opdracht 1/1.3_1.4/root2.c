@@ -54,7 +54,7 @@ double function4Derivative2(double x)
 //pak dat snijpunt van x as en stop in formule
 //vervang dat punt met of links of rechts en bereken de overgebleven
 //doe dit n keer
-void regulaFalsi(double (*functionPointer)(double y), double linksGet, double rechtsGet, double n, double errorGet)
+void regulaFalsi(double (*functionPointer)(double y), double linksGet, double rechtsGet, double n, double errorGet, double trueValue)
 {
 	double result, functionLinks, functionRechts;
 	double links = linksGet;
@@ -64,6 +64,8 @@ void regulaFalsi(double (*functionPointer)(double y), double linksGet, double re
 	double functionX = 0.0;
 	double error = errorGet;
 	double breakcheck;
+	double calculatedError;
+	printf("\nROOT R-F: \n");
 	//pak snijpunt met x-as tussen left en right
 	for(int i = 0; i < n; i++)
 	{
@@ -89,7 +91,8 @@ void regulaFalsi(double (*functionPointer)(double y), double linksGet, double re
 		}
 		
 		snijpuntprev = snijpunt;
-		printf("stap = %d, snijpunt = %e\n", i, snijpunt);
+		calculatedError = trueValue - snijpunt;
+		printf("stap = %d, snijpunt = %e, error = %e\n", i, snijpunt, calculatedError);
 	}
 	result = snijpunt;
 	printf("root = %.10e\n", result);
@@ -99,21 +102,22 @@ void regulaFalsi(double (*functionPointer)(double y), double linksGet, double re
 
 //formule van en.wikipedia.org/wiki/Newton%27s_method
 //
-void newtonRaphson(double (*functionPointer)(double y), double (*functionPointerDerivative)(double y2), double (*functionPointerDerivative2)(double y3), double linksGet, double n, double errorGet, int multiple_roots)
+void newtonRaphson(double (*functionPointer)(double y), double (*functionPointerDerivative)(double y2), double (*functionPointerDerivative2)(double y3), double linksGet, double n, double errorGet, int multiple_roots, double trueValue)
 {
 	double result = 0.0;
 	double x0 = abs(linksGet), x1 = 0.0;
 	double temp;
 	double error = errorGet;
 	double breakcheck;
-
-
+	double calculatedError = 0;
+	printf("\nROOT N-R 1: \n");
 	for(int i = 0; i < n; i++)
 	{
 		//x1 = x0 - ( (f(x0) / f'(x0) )
 		temp = functionPointer(x0) / functionPointerDerivative(x0);
 		x1 = x0 - temp;
-		printf("stap = %d, function(x) = %e\n", i, x1);
+		calculatedError = trueValue - x1;
+		printf("stap = %d, function(x) = %e, calculatedError = %e\n", i, x1,calculatedError);
 		breakcheck = x1 - x0;
 		if(breakcheck >= -error && breakcheck <= error)
 		{
@@ -126,13 +130,16 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 
 	}
 	result = x1;		
-	//printf("root = %.10e\n", result);
+	printf("root 1 = %.10e\n", result);
 
-	x0 = abs(linksGet);
+
+	result = 0;
+	x1 = 0;
+	x0 = linksGet;
 	//root 1 found, op zoek naar root nr 2
 	if(multiple_roots != 0)
 	{
-		printf("ROOT NR 2: \n");
+		printf("\nROOT N-R 2: \n");
 		for(int j = 0; j < n; j++)
 		{
 			//formule van https://www.youtube.com/watch?v=aMwpQfV0Vds
@@ -143,7 +150,8 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 				( (functionPointerDerivative(x0)*functionPointerDerivative(x0))
 				- (functionPointer(x0) *  functionPointerDerivative2(x0))));
 			x1 = x0 - temp;
-
+			calculatedError = -2 - x1;
+			printf("stap = %d, function(x) = %e, calculatedError = %e\n", j, x1,calculatedError);
 
 			breakcheck = x1 - x0;
 			if(breakcheck >= -error && breakcheck <= error)
@@ -152,7 +160,6 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 				break;
 			}
 			x0 = x1;
-			printf("stap = %d, function(x) = %e\n", j, x1);
 		}
 		result = x1;		
 		printf("root 2 = %.10e\n", result);
@@ -169,7 +176,9 @@ int main(int argc, char* argv[])
 	double startRechts = 4;
 	double startLinks = -3;
 	double error = 0.00001;
-	double startOpdracht4 = 6;
+	double startOpdracht4 = -200;
+
+	double root2 = sqrt(2);
 
 	double (*functionPointer)(double);
 	functionPointer = &function;
@@ -179,19 +188,18 @@ int main(int argc, char* argv[])
 	functionPointerDerivative2 = &function4Derivative2;
 
 	//opdracht3
-	regulaFalsi(*functionPointer, startLinks, startRechts, n, error);
-	printf("klaar met regulaFalsi van function1 tussen %e en %e.\n\n",startLinks, startRechts);
+	regulaFalsi(*functionPointer, startLinks, startRechts, n, error, root2);
+	printf("klaar met regulaFalsi van function1 tussen %.1f en %.1f.\n\n",startLinks, startRechts);
 
-	startLinks = 1;
-	newtonRaphson(*functionPointer, *functionPointerDerivative, *functionPointerDerivative2, startLinks, n, error,0);
-	printf("klaar met newton van function1 met startwaarde %e.\n\n",startLinks);
+	newtonRaphson(*functionPointer, *functionPointerDerivative, *functionPointerDerivative2, startLinks, n, error,0,root2);
+	printf("klaar met newton van function1 met startwaarde %.1f.\n\n",startLinks);
 	
 	//opdracht4
 	functionPointer = &function4;
 	functionPointerDerivative = &function4Derivative;
 
-	newtonRaphson(*functionPointer, *functionPointerDerivative, *functionPointerDerivative2, startLinks, n, error,1);
-	printf("klaar met newton van function2 met startwaarde %e.\n", startOpdracht4);
+	newtonRaphson(*functionPointer, *functionPointerDerivative, *functionPointerDerivative2, startOpdracht4, n, error,1,1);
+	printf("klaar met newton van function2 met startwaarde %.1f.\n", startOpdracht4);
 
 	return 0;
 }
