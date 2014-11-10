@@ -151,7 +151,6 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 				- (functionPointer(x0) *  functionPointerDerivative2(x0))));
 			x1 = x0 - temp;
 			calculatedError = -2 - x1;
-			printf("stap = %d, function(x) = %e, calculatedError = %e\n", j, x1,calculatedError);
 
 			breakcheck = x1 - x0;
 			if(breakcheck >= -error && breakcheck <= error)
@@ -159,6 +158,7 @@ void newtonRaphson(double (*functionPointer)(double y), double (*functionPointer
 				printf("totaal stappen = %d\n", j);
 				break;
 			}
+			printf("stap = %d, function(x) = %e, calculatedError = %e\n", j, x1,calculatedError);
 			x0 = x1;
 		}
 		result = x1;		
