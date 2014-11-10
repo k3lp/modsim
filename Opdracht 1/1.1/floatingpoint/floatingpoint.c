@@ -20,7 +20,7 @@ void floatRepresentation()
 	printf("The machine's float size in bytes = %lu\n",sizeof(f));
 	
 	//machine precision or epsilon 
-    float epsilon = 1.0;
+  float epsilon = 1.0;
 	float prevepsilon = 0.0;
 
 	while((float)(1.0+(epsilon/2)) != 1.0)
@@ -224,7 +224,7 @@ void invalidOperations()
 
 	//UNDERFLOWS
 	f = FLT_MIN / (9999999999);
-	printf("(Underflow) = %.10e\n", f);
+	printf("(Underflow) float min / large number = %.10e\n", f);
 	printf("(Underflow) bit pattern = %.10X\n", (int)f);
   
   f = -0.0;
@@ -273,7 +273,7 @@ void invalidOperations()
 
 	//UNDERFLOWS
 	d = FLT_MIN / (9999999999);
-	printf("(Underflow) = %.10e\n", d);
+	printf("(Underflow) double min / large number = %.10e\n", d);
 	printf("(Underflow) bit pattern = %.10X\n", (int)d);
   
   d = -0.0;
@@ -322,7 +322,7 @@ void invalidOperations()
   
 	//UNDERFLOWS
 	ld = FLT_MIN / (9999999999);
-	printf("(Underflow) = %.10Le\n", ld);
+	printf("(Underflow) long double min / large number = %.10Le\n", ld);
 	printf("(Underflow) bit pattern = %.10X\n", (int)ld);
   
   ld = -0.0;
