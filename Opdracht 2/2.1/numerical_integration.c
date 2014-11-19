@@ -1,8 +1,9 @@
 /*
- * 1.2
+ * 2.1
  * By: Hidde Hensel en Diederik Beker
- * http://en.wikipedia.org/wiki/Finite_difference
- * http://mathfaculty.fullerton.edu/mathews/n2003/differentiation/numericaldiffproof.pdf
+ * http://stackoverflow.com/questions/8344404/rectangle-method-c
+ * http://stackoverflow.com/questions/21146540/trapezoidal-rule-in-python
+ * http://en.wikipedia.org/wiki/Simpson%27s_rule
  */
 
 #include <stdio.h>
@@ -12,39 +13,101 @@
 
 double function(double x)
 {
-	return sin(x);
+	return pow(x,2);
 }
 
-double rectangle(double (*functionPointer)(double y))
+double rectangle(double (*functionPointer)(double), double from, double to, int subinterval)
 {
+	double result = 0, interval;
 	
+	interval = (to - from) / subinterval;
+
+	for(double i = 0.5; i < subinterval; i++)
+	{
+		result += functionPointer(from + interval * i);
+	}
+	
+	result *= interval;
+	
+	return result;
 }
 
-double trapezoidal(double (*functionPointer)(double y))
+double trapezoidal(double (*functionPointer)(double), double from, double to, int subinterval)
 {
+	double result = 0, interval;
 	
+	interval = (to - from) / subinterval;
+	
+	result += functionPointer(from) / 2.0;
+	
+	for(int i = 1; i < subinterval; i++)
+	{
+		result += functionPointer(from + interval * i);
+	}
+	
+	result += functionPointer(to) / 2.0;
+	
+	result *= interval;
+	
+	return result;
 }
 
-double simpson(double (*functionPointer)(double y))
+double simpson(double (*functionPointer)(double), double from, double to, int subinterval)
 {
+	double result = 0, interval;
 	
+	interval = (to - from) / subinterval;
+	
+	result = functionPointer(from) + functionPointer(to);
+	
+	for(int i = 1; i < subinterval; i += 2)
+	{
+		result += 4 * functionPointer(from + interval * i);
+	}
+	
+	for(int i = 2; i < subinterval - 1; i += 2)
+	{
+		result += 2 * functionPointer(from + interval * i);
+	}
+	
+	result = result * interval / 3;
+	
+	return result;
 }
 
-double gauss(double (*functionPointer)(double y))
+/*
+double gauss(double (*functionPointer)(double), double from, double to, int subinterval)
 {
-	
+
 }
+*/
 
 int main(int argc, char* argv[])
 {
-	int subinterval = 0;
+	int subinterval;
+	double from, to, result;
+	
+	printf("Enter a subinterval: ");
+	scanf("%d", &subinterval);
+	
+	printf("Enter a bottom limit: ");
+	scanf("%lf", &from);
+	
+	printf("Enter a top limit: ");
+	scanf("%lf", &to);
 	
   	//Declare function pointer
   	double (*functionPointer)(double);
   	functionPointer = &function;
   	
-  	result = rectangle(*functionPointer);
-  	printf("%.10e", result);
+  	result = rectangle(*functionPointer, from, to, subinterval);
+  	printf("Rectangle rule gives: %e\n", result);
+	
+	result = trapezoidal(*functionPointer, from, to, subinterval);
+  	printf("Trapezoidal rule gives: %e\n", result);
     
+	result = simpson(*functionPointer, from, to, subinterval);
+  	printf("Simpson gives: %e\n", result);
+	
 	return 0;
 }
