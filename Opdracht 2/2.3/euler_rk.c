@@ -1,6 +1,10 @@
 /*
  * 2.3
  * By: Hidde Hensel en Diederik Beker
+ *
+ * en.wikipedia.org/wiki/Runge-Kutta_methods
+ * http://mathworld.wolfram.com/Runge-KuttaMethod.html
+ * http://en.wikipedia.org/wiki/Euler_method
  */
 
 #include <stdio.h>
@@ -62,7 +66,7 @@ int Euler(double t0, double t1, double dt, double * y0, double * y1, int N, int 
 	return 0;
 }
 
-//formula from en.wikipedia.org/wiki/Runge-Kutta_methods
+
 int RungeKutta2(double t0, double t1, double dt, double * y0, double * y1, int N, int f(double, double *, double *, void *), void * params)
 {
 	double k1, k2, Nsteps;
@@ -110,7 +114,6 @@ int RungeKutta2(double t0, double t1, double dt, double * y0, double * y1, int N
 }
 
 
-//formula from en.wikipedia.org/wiki/Runge-Kutta_methods
 int RungeKutta4(double t0, double t1, double dt, double * y0, double * y1, int N, int f(double, double *, double *, void *), void * params)
 {
 	double k1, k2 ,k3 ,k4 ,result, Nsteps;
