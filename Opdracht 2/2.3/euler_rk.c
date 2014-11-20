@@ -156,8 +156,8 @@ int RungeKutta4(double t0, double t1, double dt, double * y0, double * y1, int N
 			k4 = dt * y1[i];
 
 			//labda = 2
-			//yn+1 = yn + dt/6 * (k1 + (4-l) * k2 + l* k3 + k4 )
-			y1[i] = temp + dt/6 * (k1 + 2*k2 + 2*k3 + k4);
+			//yn+1 = yn + (k1 + (4-l) * k2 + l* k3 + k4 ) / 6
+			y1[i] = temp +  (k1 + 2*k2 + 2*k3 + k4)/6;
 
 			//calculate new t
 			t = t0 + j * dt;
