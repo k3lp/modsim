@@ -4,6 +4,7 @@
  * http://stackoverflow.com/questions/8344404/rectangle-method-c
  * http://stackoverflow.com/questions/21146540/trapezoidal-rule-in-python
  * http://en.wikipedia.org/wiki/Simpson%27s_rule
+ * https://www.youtube.com/watch?v=i1DAfQYsCuo
  */
 
 #include <stdio.h>
@@ -75,12 +76,19 @@ double simpson(double (*functionPointer)(double), double from, double to, int su
 	return result;
 }
 
-/*
 double gauss(double (*functionPointer)(double), double from, double to, int subinterval)
 {
-
+	double result = 0, interval, x1, x2;
+	
+	interval = (to - from) / 2;
+	
+	x1 = ((to + from) / 2) + (-1 / sqrt(3)) * interval;
+	x2 = ((to + from) / 2) + (1 / sqrt(3)) * interval;
+	
+	result = (interval * functionPointer(x1)) + (interval * functionPointer(x2));
+	
+	return result;
 }
-*/
 
 int main(int argc, char* argv[])
 {
@@ -108,6 +116,9 @@ int main(int argc, char* argv[])
     
 	result = simpson(*functionPointer, from, to, subinterval);
   	printf("Simpson gives: %e\n", result);
+	
+	result = gauss(*functionPointer, from, to, subinterval);
+  	printf("Guass gives: %e\n", result);
 	
 	return 0;
 }
