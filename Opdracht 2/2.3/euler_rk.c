@@ -13,9 +13,9 @@
 #include <math.h>
 int Euler(double t0, double t1, double dt, double * y0, double * y1, int N, int f(double, double *, double *, void *), void * params);
 
-//int RungeKutta2(double t0, double t1, double dt, double * y0, double * y1, int N, int f(double, double *, double *, void *), void * params);
+int RungeKutta2(double t0, double t1, double dt, double * y0, double * y1, int N, int f(double, double *, double *, void *), void * params);
 
-//int RungeKutta2(double t0, double t1, double dt, double * y0, double * y1, int N, int f(double, double *, double *, void *), void * params);
+int RungeKutta2(double t0, double t1, double dt, double * y0, double * y1, int N, int f(double, double *, double *, void *), void * params);
 
 /*	t0		the start value of t0 of t (input)
 	t1		the final value of t (input)
