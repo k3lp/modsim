@@ -14,7 +14,7 @@
 
 double function(double x)
 {
-	return pow(x,2);
+	return pow(x,-0.5);
 }
 
 double rectangle(double (*functionPointer)(double), double from, double to, int subinterval)
@@ -78,14 +78,17 @@ double simpson(double (*functionPointer)(double), double from, double to, int su
 
 double gauss(double (*functionPointer)(double), double from, double to, int subinterval)
 {
-	double result = 0, interval, x1, x2;
+	double result = 0, interval;
 	
-	interval = (to - from) / 2;
+	interval = (to - from) / subinterval;
 	
-	x1 = ((to + from) / 2) + (-1 / sqrt(3)) * interval;
-	x2 = ((to + from) / 2) + (1 / sqrt(3)) * interval;
+	for(double i = 0.5; i < subinterval; i++)
+	{
+		result += functionPointer(from + interval * i) + ((-1 / sqrt(3)) * interval);
+		result += functionPointer(from + interval * i) + ((+1 / sqrt(3)) * interval);
+	}
 	
-	result = (interval * functionPointer(x1)) + (interval * functionPointer(x2));
+	result = result * interval / 2;
 	
 	return result;
 }
