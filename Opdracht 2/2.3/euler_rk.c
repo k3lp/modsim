@@ -116,7 +116,7 @@ int RungeKutta2(double t0, double t1, double dt, double * y0, double * y1, int N
 
 int RungeKutta4(double t0, double t1, double dt, double * y0, double * y1, int N, int f(double, double *, double *, void *), void * params)
 {
-	double k1, k2 ,k3 ,k4 ,result, Nsteps;
+	double k1, k2 ,k3 ,k4 , Nsteps;
 	//calculate ks
 	double t = t0;
 	double temp;
@@ -193,7 +193,6 @@ int main(int argc, char* argv[])
 	double y1[N];
 	void * params;
 
-	double test[N];
 
 	y0[0] = 0.0; 
 	y1[0] = 0.0;
