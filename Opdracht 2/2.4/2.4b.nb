@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     34240,        725]
-NotebookOptionsPosition[     33919,        709]
-NotebookOutlinePosition[     34263,        724]
-CellTagsIndexPosition[     34220,        721]
+NotebookDataLength[     35018,        749]
+NotebookOptionsPosition[     34624,        731]
+NotebookOutlinePosition[     34963,        746]
+CellTagsIndexPosition[     34920,        743]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -622,9 +622,9 @@ tPd2Dq9XKNTmMtKSr0wBNukVdd9VCsUvbGr4nJwCthFR4kfXKGyr9dCpvZ0C
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
          Typeset`skipInitDone$$}, 
       "Body" :> ($CellContext`pic = 
-        VectorPlot[{(-$CellContext`a$$) $CellContext`x + $CellContext`c$$ \
-$CellContext`d$$ $CellContext`x $CellContext`y, $CellContext`b$$ \
-$CellContext`y - $CellContext`d$$ $CellContext`x $CellContext`y}, \
+        VectorPlot[{(-$CellContext`a$$) $CellContext`x + (($CellContext`c$$ \
+$CellContext`d$$) $CellContext`x) $CellContext`y, $CellContext`b$$ \
+$CellContext`y - ($CellContext`d$$ $CellContext`x) $CellContext`y}, \
 {$CellContext`x, 0, 7}, {$CellContext`y, 0, 5}, StreamPoints -> {{
              Part[$CellContext`p$$, 1], 
              Part[$CellContext`p$$, 2]}}, StreamStyle -> {Red, Thick}, 
@@ -637,12 +637,12 @@ $CellContext`y - $CellContext`d$$ $CellContext`x $CellContext`y}, \
         NDSolve[{{
            Derivative[
              1][$CellContext`x1][$CellContext`t] == (-$CellContext`a$$) \
-$CellContext`x1[$CellContext`t] + $CellContext`c$$ $CellContext`d$$ \
-$CellContext`x1[$CellContext`t] $CellContext`y1[$CellContext`t], 
+$CellContext`x1[$CellContext`t] + (($CellContext`c$$ $CellContext`d$$) \
+$CellContext`x1[$CellContext`t]) $CellContext`y1[$CellContext`t], 
             Derivative[
              1][$CellContext`y1][$CellContext`t] == $CellContext`b$$ \
-$CellContext`y1[$CellContext`t] - $CellContext`d$$ \
-$CellContext`x1[$CellContext`t] $CellContext`y1[$CellContext`t]}, \
+$CellContext`y1[$CellContext`t] - ($CellContext`d$$ \
+$CellContext`x1[$CellContext`t]) $CellContext`y1[$CellContext`t]}, \
 {$CellContext`x1[0] == Part[$CellContext`p$$, 1], $CellContext`y1[0] == 
             Part[$CellContext`p$$, 2]}}, {
            $CellContext`x1[$CellContext`t], 
@@ -705,11 +705,33 @@ $CellContext`c$$, $CellContext`d$$, $CellContext`tend$$, $CellContext`p$$},
   Manipulate`InterpretManipulate[1]]], "Output",
  CellChangeTimes->{{3.625756830939909*^9, 3.6257568527894363`*^9}, {
   3.625757054343734*^9, 3.625757073766323*^9}}]
-}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData["\[IndentingNewLine]"], "Input",
+ CellChangeTimes->{3.6258549114553537`*^9}],
+
+Cell[BoxData[{
+ RowBox[{"Contributed", " ", 
+  RowBox[{"by", ":", 
+   RowBox[{"Stephen", " ", "Wilkerson"}]}]}], "\n", 
+ RowBox[{"(", 
+  RowBox[{
+   RowBox[{
+   "United", " ", "States", " ", "Military", " ", "Academy", " ", "West", " ",
+     "Point"}], ",", 
+   RowBox[{"Department", " ", "of", " ", "Mathematics"}]}], 
+  ")"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"http", ":"}], "//", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"demonstrations", ".", "wolfram", ".", "com"}], "/", 
+    "PredatorPreyModel"}], "/"}]}]}], "Input",
+ CellChangeTimes->{{3.6258549460532603`*^9, 3.625854953266123*^9}}]
 },
 WindowSize->{752, 767},
 WindowMargins->{{0, Automatic}, {Automatic, 0}},
-FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (September 9, 2014)",
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (July 1, 2014)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -725,8 +747,10 @@ CellTagsIndex->{}
 Notebook[{
 Cell[CellGroupData[{
 Cell[580, 22, 9737, 261, 852, "Input"],
-Cell[10320, 285, 23583, 421, 436, "Output"]
-}, Open  ]]
+Cell[10320, 285, 23595, 421, 436, "Output"]
+}, Open  ]],
+Cell[33930, 709, 89, 1, 52, "Input"],
+Cell[34022, 712, 598, 17, 72, "Input"]
 }
 ]
 *)
