@@ -10,14 +10,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     20342,        499]
-NotebookOptionsPosition[     20007,        484]
-NotebookOutlinePosition[     20349,        499]
-CellTagsIndexPosition[     20306,        496]
+NotebookDataLength[     28077,        669]
+NotebookOptionsPosition[     27670,        651]
+NotebookOutlinePosition[     28017,        666]
+CellTagsIndexPosition[     27974,        663]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[
  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
   RowBox[{
@@ -169,7 +171,7 @@ Cell[BoxData[
    RowBox[{"{", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"s", ",", "100", ",", "\"\<immune duration\>\""}], "}"}], ",", 
+      RowBox[{"s", ",", "1000", ",", "\"\<immune duration\>\""}], "}"}], ",", 
      "1", ",", "8000", ",", "1", ",", 
      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", " ", 
      RowBox[{"ImageSize", "\[Rule]", " ", "Tiny"}]}], "}"}], ",", 
@@ -291,18 +293,183 @@ Cell[BoxData[
                     RowBox[{"1", ",", "1"}], "]"}], "]"}], ",", "br"}], "}"}],
                  ",", ".01"}], "]"}]}], "]"}]}], "}"}], ",", 
           RowBox[{"Dividers", "\[Rule]", "All"}]}], "]"}], "]"}]}]}], 
-     ")"}]}]}], "]"}]], "Input"],
+     ")"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.6264266161402655`*^9, 3.626426644950583*^9}, 
+   3.6264267126944647`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`c$$ = 0.5, $CellContext`i0$$ = 
+    0.001, $CellContext`p$$ = 0.04, $CellContext`q$$ = 6, $CellContext`r$$ = 
+    9, $CellContext`s$$ = 100, $CellContext`tf$$ = 100, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`tf$$], 100, "history (days)"}, {100, 250, 500, 
+      1000}}, {{
+       Hold[$CellContext`p$$], 0.04, "resistance (p)"}, 0.04, 0.99, 0.01}, {{
+       Hold[$CellContext`c$$], 0.5, "contact rate (c)"}, 0.01, 50, 0.01}, {{
+       Hold[$CellContext`q$$], 6, "latency period"}, 2, 10, 0.01}, {{
+       Hold[$CellContext`r$$], 9, "recovery period"}, 1, 20, 0.01}, {{
+       Hold[$CellContext`s$$], 100, "immune duration"}, 1, 8000, 1}, {{
+       Hold[$CellContext`i0$$], 0.001, "initial I fraction"}, 0.001, 0.1, 
+      0.001}}, Typeset`size$$ = {374., {196., 180.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`tf$6829$$ = 0, $CellContext`p$6830$$ = 
+    0, $CellContext`c$6831$$ = 0, $CellContext`q$6832$$ = 
+    0, $CellContext`r$6833$$ = 0, $CellContext`s$6834$$ = 
+    0, $CellContext`i0$6835$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`c$$ = 0.5, $CellContext`i0$$ = 
+        0.001, $CellContext`p$$ = 0.04, $CellContext`q$$ = 
+        6, $CellContext`r$$ = 9, $CellContext`s$$ = 100, $CellContext`tf$$ = 
+        100}, "ControllerVariables" :> {
+        Hold[$CellContext`tf$$, $CellContext`tf$6829$$, 0], 
+        Hold[$CellContext`p$$, $CellContext`p$6830$$, 0], 
+        Hold[$CellContext`c$$, $CellContext`c$6831$$, 0], 
+        Hold[$CellContext`q$$, $CellContext`q$6832$$, 0], 
+        Hold[$CellContext`r$$, $CellContext`r$6833$$, 0], 
+        Hold[$CellContext`s$$, $CellContext`s$6834$$, 0], 
+        Hold[$CellContext`i0$$, $CellContext`i0$6835$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Quiet[
+        Module[{$CellContext`hs2$, $CellContext`Fr$}, $CellContext`Fr$[
+            Pattern[$CellContext`v$, 
+             Blank[]]] = $CellContext`SE[$CellContext`v$, $CellContext`p$$, 1 - 
+            1/$CellContext`q$$, 1 - 1/$CellContext`r$$, 1 - 
+            1/$CellContext`s$$, $CellContext`c$$]; $CellContext`hs2$ = Thread[
+            
+            NestList[$CellContext`Fr$, {
+             1 - $CellContext`i0$$, 0, $CellContext`i0$$, 
+              0}, $CellContext`tf$$]]; Labeled[
+           Framed[
+            
+            ListLinePlot[$CellContext`hs2$, GridLines -> Automatic, 
+             PlotLabel -> $CellContext`DaR[$CellContext`hs2$, \
+$CellContext`r$$, $CellContext`q$$, $CellContext`s$$, $CellContext`c$$ 
+               Log[1/$CellContext`p$$] (1 + $CellContext`r$$)], 
+             PlotRange -> {0, 1}, Filling -> {3 -> Bottom}, 
+             ImageSize -> {370, 450}, ImagePadding -> 20, ImageMargins -> 
+             None], FrameStyle -> None, FrameMargins -> {{1, 1}, {-50, -50}}], 
+           Row[
+            MapThread[Grid[{{
+                Graphics[{
+                  EdgeForm[
+                   Darker[#2]], 
+                  Opacity[0.7], #2, 
+                  Rectangle[]}, ImageSize -> 10], 
+                Style[#, 12, Italic]}}, Alignment -> {Left, Baseline}, 
+              Spacings -> {0.2, Automatic}]& , {{"S", "E", "I", "R"}, 
+              Part[
+               ColorData[1, "ColorList"], 
+               Span[1, 4]]}], "     "], Bottom, Spacings -> {Automatic, 1}]]],
+       "Specifications" :> {{{$CellContext`tf$$, 100, "history (days)"}, {100,
+          250, 500, 1000}}, {{$CellContext`p$$, 0.04, "resistance (p)"}, 0.04,
+          0.99, 0.01, Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`c$$, 0.5, "contact rate (c)"}, 0.01, 50, 0.01, 
+         Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`q$$, 6, "latency period"}, 2, 10, 0.01, 
+         Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`r$$, 9, "recovery period"}, 1, 20, 0.01, 
+         Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`s$$, 100, "immune duration"}, 1, 8000, 1, 
+         Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`i0$$, 0.001, "initial I fraction"}, 0.001, 0.1,
+          0.001, Appearance -> "Labeled", ImageSize -> Tiny}}, 
+      "Options" :> {
+       TrackedSymbols :> {$CellContext`tf$$, $CellContext`p$$, \
+$CellContext`q$$, $CellContext`c$$, $CellContext`r$$, $CellContext`s$$, \
+$CellContext`i0$$}, ControlPlacement -> Left, AutorunSequencing -> {1, 2, 3}},
+       "DefaultOptions" :> {}],
+     ImageSizeCache->{653., {216., 223.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>(($CellContext`SE[{
+          Pattern[$CellContext`x, 
+           Blank[]], 
+          Pattern[$CellContext`y, 
+           Blank[]], 
+          Pattern[$CellContext`z, 
+           Blank[]], 
+          Pattern[$CellContext`m, 
+           Blank[]]}, 
+         Pattern[$CellContext`p, 
+          Blank[]], 
+         Pattern[$CellContext`q, 
+          Blank[]], 
+         Pattern[$CellContext`r, 
+          Blank[]], 
+         Pattern[$CellContext`s, 
+          Blank[]], 
+         Pattern[$CellContext`c, 
+          
+          Blank[]]] := {$CellContext`p^($CellContext`c $CellContext`z) \
+$CellContext`x + (1 - $CellContext`s) $CellContext`m, (
+           1 - $CellContext`p^($CellContext`c $CellContext`z)) $CellContext`x + \
+$CellContext`q $CellContext`y, (
+           1 - $CellContext`q) $CellContext`y + $CellContext`r \
+$CellContext`z, (
+           1 - $CellContext`r) $CellContext`z + $CellContext`s \
+$CellContext`m}; $CellContext`DaR[
+         Pattern[$CellContext`hs, 
+          Blank[]], 
+         Pattern[$CellContext`lp, 
+          Blank[]], 
+         Pattern[$CellContext`ip, 
+          Blank[]], 
+         Pattern[$CellContext`rp, 
+          Blank[]], 
+         Pattern[$CellContext`br, 
+          Blank[]]] := Quiet[
+         Grid[{{
+            Row[{
+              Style["E", Italic], " period"}], 
+            Row[{
+              Style["I", Italic], " period"}], 
+            Row[{
+              Style["R", Italic], " period"}], 
+            Row[{"peak ", 
+              Style["I", Italic]}], "peak day", 
+            Row[{"BRN ", 
+              Subscript[
+               Style["R", Italic], 0]}]}, 
+           With[{$CellContext`mx = Max[
+               Part[$CellContext`hs, 2]]}, 
+            
+            Round[{$CellContext`lp, $CellContext`ip, $CellContext`rp, \
+$CellContext`mx, 
+              Part[
+               Position[
+                Part[$CellContext`hs, 2], $CellContext`mx], 1, 
+               1], $CellContext`br}, 0.01]]}, Dividers -> All]]); 
+     Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.6264264046064577`*^9, {3.6264266187719*^9, 3.6264266479546804`*^9}}]
+}, Open  ]],
 
 Cell[BoxData[
  RowBox[{
   TagBox[
    StyleBox[
-    DynamicModuleBox[{$CellContext`c$$ = 0.5, $CellContext`i0$$ = 
+    DynamicModuleBox[{$CellContext`c$$ = 35.12, $CellContext`i0$$ = 
      0.001, $CellContext`p$$ = 0.04, $CellContext`q$$ = 6, $CellContext`r$$ = 
-     9, $CellContext`s$$ = 699, $CellContext`tf$$ = 100, Typeset`show$$ = 
+     9, $CellContext`s$$ = 100, $CellContext`tf$$ = 100, Typeset`show$$ = 
      True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-     Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-     "\"untitled\"", Typeset`specs$$ = {{{
+     Typeset`animator$$, Typeset`animvar$$, Typeset`name$$ = "\"untitled\"", 
+     Typeset`specs$$ = {{{
         Hold[$CellContext`tf$$], 100, "history (days)"}, {100, 250, 500, 
        1000}}, {{
         Hold[$CellContext`p$$], 0.04, "resistance (p)"}, 0.04, 0.99, 0.01}, {{
@@ -348,8 +515,8 @@ Cell[BoxData[
              
              ListLinePlot[$CellContext`hs2$, GridLines -> Automatic, 
               PlotLabel -> $CellContext`DaR[$CellContext`hs2$, \
-$CellContext`r$$, $CellContext`q$$, $CellContext`s$$, $CellContext`c$$ 
-                Log[1/$CellContext`p$$] (1 + $CellContext`r$$)], 
+$CellContext`r$$, $CellContext`q$$, $CellContext`s$$, ($CellContext`c$$ 
+                 Log[1/$CellContext`p$$]) (1 + $CellContext`r$$)], 
               PlotRange -> {0, 1}, Filling -> {3 -> Bottom}, 
               ImageSize -> {370, 450}, ImagePadding -> 20, ImageMargins -> 
               None], FrameStyle -> None, 
@@ -482,9 +649,9 @@ Cell[BoxData[
     RowBox[{"David", "+", "Gurarie"}]}]}]}]], "Input",
  CellChangeTimes->{{3.625854845117261*^9, 3.625854853509241*^9}}]
 },
-WindowSize->{979, 772},
-WindowMargins->{{Automatic, 295}, {Automatic, 88}},
-FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (July 1, 2014)",
+WindowSize->{1536, 783},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.0 for Microsoft Windows (64-bit) (September 9, 2014)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -498,9 +665,12 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 10952, 273, 661, "Input"],
-Cell[11513, 295, 7687, 162, 510, InheritFromParent],
-Cell[19203, 459, 800, 23, 72, "Input"]
+Cell[CellGroupData[{
+Cell[580, 22, 11049, 275, 501, "Input"],
+Cell[11632, 299, 7528, 160, 456, "Output"]
+}, Open  ]],
+Cell[19175, 462, 7688, 162, 510, "Input"],
+Cell[26866, 626, 800, 23, 72, "Input"]
 }
 ]
 *)

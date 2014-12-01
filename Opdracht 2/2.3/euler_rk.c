@@ -178,15 +178,15 @@ int RungeKutta4(double t0, double t1, double dt, double * y0, double * y1, int N
 
 int testFunction(double t, double *y, double *y1, void *params)
 {
-	y1[0] = t;
+	y1[0] = y1[0] * y1[0];
 	return 0;
 }
 
 
 int main(int argc, char* argv[])
 {
-	double t0 = 0.0;
-	double t1 = 10.0;
+	double t0 = -1.0;
+	double t1 = 1.0;
 	double dt = 0.1;
 	int N = 1;
 	double y0[N];
@@ -194,17 +194,17 @@ int main(int argc, char* argv[])
 	void * params;
 
 
-	y0[0] = 0.0; 
+	y0[0] = 1.0; 
 	y1[0] = 0.0;
 	Euler(t0,t1,dt,y0,y1,N,&testFunction,&params);
 	printf("testEuler: %f\n",y1[0]);
 
-	y0[0] = 0.0; 
+	y0[0] = 1.0; 
 	y1[0] = 0.0;
 	RungeKutta2(t0,t1,dt,y0,y1,N,&testFunction,&params);
 	printf("testRK2: %f\n",y1[0]);
 
-	y0[0] = 0.0; 
+	y0[0] = 1.0; 
 	y1[0] = 0.0;
 	RungeKutta4(t0,t1,dt,y0,y1,N,&testFunction,&params);
 	printf("testRK4: %f\n",y1[0]);

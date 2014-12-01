@@ -14,7 +14,7 @@
 
 double function(double x)
 {
-	return pow(x,-0.5);
+	return (x*pow(2.71828182846,-x));
 }
 
 double rectangle(double (*functionPointer)(double), double from, double to, int subinterval)
